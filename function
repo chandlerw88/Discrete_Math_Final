@@ -1,0 +1,32 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Nov 27 18:14:29 2018
+
+@author: chand
+"""
+def cost(e,G):
+        return G.edge_dict()[e] 
+
+def incident_edges(T,G):
+        edges=[]
+        for v in T[0]:
+            for e in G.edge_set():
+                if v in e:
+                    edges.append(e)
+            for e in edges:
+                if e in T[1]:
+                 edges.remove(e) 
+        return edges
+
+def min_incident_edge(T,G):
+    L=len(incident_edges(T,G))-1
+    min_edge_cost=0
+    cmp_edge_cost=0
+    for i in range(L):
+        min_edge_cost=cost((incident_edges(T,G)[i]),G)
+        cmp_edge_cost=cost((incident_edges(T,G)[i+1]),G)
+        min_edge=incident_edges(T,G)[i]
+        if min_edge_cost > cmp_edge_cost:
+            min_edge=incident_edges(T,G)[i+1]
+        if min_edge_cost=
+    return min_edge
