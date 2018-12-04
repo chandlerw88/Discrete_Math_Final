@@ -18,7 +18,7 @@ def incident_edges(T,G):
                  edges.remove(e) 
         return edges
 
-def min_incident_edge(T,G):
+"""def min_incident_edge(T,G):
     L=len(incident_edges(T,G))-1
     min_edge_cost=0
     cmp_edge_cost=0
@@ -28,5 +28,17 @@ def min_incident_edge(T,G):
         min_edge=incident_edges(T,G)[i]
         if min_edge_cost > cmp_edge_cost:
             min_edge=incident_edges(T,G)[i+1]
-        if min_edge_cost """Remove this line to get the function to work"""
+        if min_edge_cost==cmp_edge_cost:
+            for e in G.edge_set():
+                e== incident_edges(T,G)[i] and e!=T[0]:
+                    
+    return min_edge"""
+
+def min_incident_edge(T,G):
+    edges = incident_edges(T,G)
+    min_edge=incident_edges(T,G)[0]
+    min_edge_cost=cost((incident_edges(T,G)[0]),G)
+    for e in edges:
+        if min_edge_cost > cost(e,G): 
+            min_edge = e
     return min_edge
