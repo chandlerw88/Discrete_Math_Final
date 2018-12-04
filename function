@@ -28,5 +28,5 @@ def min_incident_edge(T,G):
         min_edge=incident_edges(T,G)[i]
         if min_edge_cost > cmp_edge_cost:
             min_edge=incident_edges(T,G)[i+1]
-        if min_edge_cost=
+        if min_edge_cost """Remove this line to get the function to work"""
     return min_edge
