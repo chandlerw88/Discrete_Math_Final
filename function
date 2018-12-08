@@ -18,27 +18,38 @@ def incident_edges(T,G):
                  edges.remove(e) 
         return edges
 
-"""def min_incident_edge(T,G):
-    L=len(incident_edges(T,G))-1
-    min_edge_cost=0
-    cmp_edge_cost=0
-    for i in range(L):
-        min_edge_cost=cost((incident_edges(T,G)[i]),G)
-        cmp_edge_cost=cost((incident_edges(T,G)[i+1]),G)
-        min_edge=incident_edges(T,G)[i]
-        if min_edge_cost > cmp_edge_cost:
-            min_edge=incident_edges(T,G)[i+1]
-        if min_edge_cost==cmp_edge_cost:
-            for e in G.edge_set():
-                e== incident_edges(T,G)[i] and e!=T[0]:
-                    
-    return min_edge"""
+def valid_edges(T,G):
+   Lcheck=len(T[1])
+   edges=incident_edges(T,G)
+   if Lcheck == 0: 
+       return edges    
+   if Lcheck == 1:
+      previous_edge=incident_edges(({list(T[0])[1]},[]),G)
+      for e in previous_edge:
+          if e in edges:
+               edges.remove(e)
+      return edges 
+   if Lcheck > 1:
+       previous_edge=incident_edges(({list(T[0])[1]},[]),G)
+       cycling_edge=incident_edges(({list(T[0])[2]},[]),G) 
+       for e in previous_edge:
+           if e in edges:
+               edges.remove(e)
+       for e in cycling_edge:
+           if e in edges:
+               edges.remove(e)
+       return edges
 
 def min_incident_edge(T,G):
-    edges = incident_edges(T,G)
-    min_edge=incident_edges(T,G)[0]
-    min_edge_cost=cost((incident_edges(T,G)[0]),G)
+    edges = valid_edges(T,G)
+    min_edge=valid_edges(T,G)[0]
+    min_edge_cost=cost((valid_edges(T,G)[0]),G)
     for e in edges:
         if min_edge_cost > cost(e,G): 
             min_edge = e
     return min_edge
+
+
+def updateT(T,G):
+    edges=min_incident_edge(T,G)
+    
