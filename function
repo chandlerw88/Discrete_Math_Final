@@ -24,7 +24,7 @@ def valid_edges(T,G):
    if Lcheck == 0: 
        return edges    
    if Lcheck == 1:
-      previous_edge=incident_edges(({list(T[0])[1]},[]),G)
+      previous_edge=incident_edges(({list(T[0])[0]},[]),G)
       for e in previous_edge:
           if e in edges:
                edges.remove(e)
@@ -52,4 +52,8 @@ def min_incident_edge(T,G):
 
 def updateT(T,G):
     edges=min_incident_edge(T,G)
-    
+    T[1].append(edges)
+    for v in edges:
+        if v not in T[0]:
+            T[0].add(v)            
+    return T
