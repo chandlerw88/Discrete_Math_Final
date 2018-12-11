@@ -1,0 +1,62 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Nov 27 18:14:29 2018
+
+@author: chand
+"""
+def cost(e,G):
+        return G.edge_dict()[e] 
+
+def incident_edges(T,G):
+        edges=[]
+        for v in T[0]:
+            for e in G.edge_set():
+                if v in e:
+                    edges.append(e)
+            for e in edges:
+                if e in T[1]:
+                 edges.remove(e) 
+        return edges
+
+def valid_edges(T,G):
+    validated_edges=vvalidate_edges(T,G)
+    numberOfEdges=len(T[1])
+    if numberOfEdges==0:
+        validate_edges=incident_edges(T,G)
+        return validated_edges
+    if numberOfEdges==1:
+        for e in T[-1]:
+            for v in e:
+                t=({v},[])
+                edges=incident_edges(t,G)
+                edgesForRemoval=
+                for e in edges:
+                    if e in validated_edges:
+                        validated_edges.remove(e)
+    if numberOfEdges > 1:
+        for e in T[-2]:
+            for v in e:
+                t=({v},[])
+                edges=incident_edges(t,G)
+                for e in edges:
+                    if e in validated_edges:
+                        validated_edges.remove(e)
+    return validated_edges
+
+def min_incident_edge(T,G):
+    edges = valid_edges(T,G)
+    min_edge=valid_edges(T,G)[0]
+    min_edge_cost=cost((valid_edges(T,G)[0]),G)
+    for e in edges:
+        if min_edge_cost > cost(e,G): 
+            min_edge = e
+    return min_edge
+
+
+def updateT(T,G):
+    edges=min_incident_edge(T,G)
+    T[1].append(edges)
+    for v in edges:
+        if v not in T[0]:
+            sorted((T[0].add(v)            
+    return T
